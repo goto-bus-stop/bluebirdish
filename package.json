@@ -1,0 +1,30 @@
+{
+  "name": "bluebirdish",
+  "description": "bluebird's fancy api but with native promises",
+  "version": "0.0.0",
+  "author": "Renée Kooi <renee@kooi.me>",
+  "bugs": {
+    "url": "https://github.com/goto-bus-stop/bluebirdish/issues"
+  },
+  "devDependencies": {
+    "buble": "^0.19.3",
+    "standard": "*",
+    "tap-dot": "^1.0.5",
+    "tape": "^4.0.0"
+  },
+  "homepage": "https://github.com/goto-bus-stop/bluebirdish",
+  "keywords": [
+    "bluebird",
+    "promise"
+  ],
+  "license": "Apache-2.0",
+  "main": "./lib/index.js",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/goto-bus-stop/bluebirdish.git"
+  },
+  "scripts": {
+    "build": "buble src -o lib --target node:4",
+    "test": "standard && node test | tap-dot"
+  }
+}
