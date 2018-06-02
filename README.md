@@ -2,6 +2,8 @@
 
 bluebird's fancy api but with native promises
 
+Works in environments with native Promises and class syntax!
+
 [![npm][npm-image]][npm-url]
 [![travis][travis-image]][travis-url]
 [![standard][standard-image]][standard-url]
@@ -22,8 +24,58 @@ npm install bluebirdish
 ## Usage
 
 ```js
-var bluebirdish = require('bluebirdish')
+var Bluebirdish = require('bluebirdish')
 ```
+
+## API
+
+The API is the same as [Bluebird](http://bluebirdjs.com/docs/getting-started.html)'s. These features are implemented:
+
+- [x] .then()
+- [x] .spread()
+- [x] .catch()
+- [x] .finally()
+- [x] Promise.resolve()
+- [x] Promise.reject()
+- [x] Promise.join()
+- [x] Promise.try()
+- [x] Promise.method()
+- [x] Promise.all()
+- [x] Promise.props()
+- [x] Promise.any()
+- [ ] Promise.some()
+- [x] Promise.map()
+- [x] Promise.reduce()
+- [ ] Promise.filter()
+- [ ] Promise.each()
+- [ ] Promise.mapSeries()
+- [x] Promise.race()
+- [ ] Promise.using()
+- [ ] .disposer()
+- [ ] Promise.promisify()
+- [ ] Promise.promisifyAll()
+- [ ] Promise.fromCallback()
+- [ ] .asCallback()
+- [x] Promise.delay()
+- [ ] .timeout()
+- [ ] .cancel()
+- [x] Promise.coroutine()
+  - [ ] Promise.coroutine.addYieldHandler()
+- [x] Promise.spawn()
+- [x] .tap()
+- [x] .tapCatch()
+- [x] .call()
+- [x] .get()
+- [x] .return()
+- [x] .throw()
+- [x] .catchReturn()
+- [x] .catchThrow()
+- [ ] .reflect()
+- [ ] Promise.getNewLibraryCopy()
+- [ ] OperationalError
+- [ ] TimeoutError
+- [ ] CancellationError
+- [ ] AggregateError
 
 ## License
 
