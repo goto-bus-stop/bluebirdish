@@ -25,6 +25,7 @@
   },
   "scripts": {
     "build": "buble src -o lib --target node:4",
-    "test": "standard && node test | tap-dot"
+    "prepare": "npm run build",
+    "test": "standard && npm run build && node test | tap-dot"
   }
 }
