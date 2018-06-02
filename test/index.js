@@ -33,7 +33,9 @@ Test.prototype.run = function run () {
 }
 
 require('./call')
+require('./map')
 require('./props')
+require('./race')
 require('./reduce')
 require('./spread')
 require('./tap')

@@ -83,6 +83,7 @@ module.exports = class Bluebirdish extends Promise {
   'return' (value) {
     return this.then(() => value)
   }
+  get thenReturn () { return this.return }
 
   'throw' (err) {
     return this.then(() => { throw err })
@@ -103,7 +104,7 @@ module.exports = class Bluebirdish extends Promise {
     return this.resolve(arg).then((arr) => super.all(arr))
   }
   static race (arg) {
-    return this.resolve(arg).then((arr) => super.race(arr))
+    return this.resolve(arg).then((arr) => super.race(unsparse(arr)))
   }
 
   static join (...promises) {
@@ -241,4 +242,15 @@ function matchesPredicate (err, predicate) {
 
 function matches (err, predicate) {
   return Object.keys(predicate).every((k) => predicate[k] === err[k])
+}
+
+function unsparse (sparse) {
+  const arr = []
+  for (let i = 0; i < sparse.length; i++) {
+    if (sparse[i] === undefined && !(i in sparse)) {
+      continue
+    }
+    arr.push(sparse[i])
+  }
+  return arr
 }
