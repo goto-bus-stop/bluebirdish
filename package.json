@@ -1,14 +1,14 @@
 {
   "name": "bluebirdish",
   "description": "bluebird's fancy api but with native promises",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "author": "Renée Kooi <renee@kooi.me>",
   "bugs": {
     "url": "https://github.com/goto-bus-stop/bluebirdish/issues"
   },
   "devDependencies": {
     "buble": "^0.19.3",
-    "standard": "*",
+    "standard": "^11.0.0",
     "tap-dot": "^1.0.5",
     "tape": "^4.0.0"
   },
