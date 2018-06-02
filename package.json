@@ -12,6 +12,10 @@
     "tap-dot": "^1.0.5",
     "tape": "^4.0.0"
   },
+  "files": [
+    "lib",
+    "src"
+  ],
   "homepage": "https://github.com/goto-bus-stop/bluebirdish",
   "keywords": [
     "bluebird",
