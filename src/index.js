@@ -99,6 +99,26 @@ module.exports = class Bluebirdish extends Promise {
     return this.catch(...args, () => { throw err })
   }
 
+  asCallback (cb, opts) {
+    if (!cb) return this.then()
+
+    function error (err) {
+      if (!err) err = Object.assign(new Error(), { cause: err })
+      cb(err)
+    }
+    function success (val) {
+      if (val === undefined) {
+        cb(null)
+      } else {
+        if (opts && opts.spread) cb(null, ...val)
+        else cb(null, val)
+      }
+    }
+
+    return this.then(success, error)
+  }
+  get nodeify () { return this.asCallback } // alias
+
   // Bluebird accepts a Promise for an Array in `all` and `race`.
   static all (arg) {
     return this.resolve(arg).then((arr) => super.all(arr))
