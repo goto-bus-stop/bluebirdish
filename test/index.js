@@ -32,6 +32,7 @@ Test.prototype.run = function run () {
   this.emit('run')
 }
 
+require('./any')
 require('./call')
 require('./get')
 require('./getNewLibraryCopy')

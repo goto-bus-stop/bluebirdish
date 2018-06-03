@@ -70,6 +70,10 @@ const makeBluebirdish = () => Object.assign(class Bluebirdish extends Promise {
     return this.constructor.some(this, num)
   }
 
+  any () {
+    return this.constructor.any(this)
+  }
+
   delay (time) {
     return this.then((value) => this.constructor.delay(time, value))
   }
@@ -243,6 +247,10 @@ const makeBluebirdish = () => Object.assign(class Bluebirdish extends Promise {
         this.resolve(promises[i]).then(onresolve, onreject)
       }
     }))
+  }
+
+  static any (arg) {
+    return this.some(arg, 1).get(0)
   }
 
   static delay (time, value) {
