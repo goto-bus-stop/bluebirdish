@@ -46,7 +46,7 @@ The API is the same as [Bluebird](http://bluebirdjs.com/docs/getting-started.htm
 - [x] Promise.some()
 - [x] Promise.map()
 - [x] Promise.reduce()
-- [ ] Promise.filter()
+- [x] Promise.filter()
 - [ ] Promise.each()
 - [ ] Promise.mapSeries()
 - [x] Promise.race()

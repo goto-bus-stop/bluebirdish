@@ -62,6 +62,10 @@ const makeBluebirdish = () => Object.assign(class Bluebirdish extends Promise {
     return this.constructor.map(this, fn)
   }
 
+  filter (fn) {
+    return this.constructor.filter(this, fn)
+  }
+
   reduce (fn, initial) {
     return this.constructor.reduce(this, fn, initial)
   }
@@ -221,6 +225,17 @@ const makeBluebirdish = () => Object.assign(class Bluebirdish extends Promise {
             reducer(acc, val, i, promises.length)))
       return initial === undefined ? promises.reduce(r) : promises.reduce(r, initial)
     })
+  }
+
+  static filter (arg, filterer) {
+    return this.map(arg, (val, i, length) =>
+      Promise.all([filterer(val, i, length), val])
+    ).then((vals) =>
+      vals.reduce((filtered, [keep, val]) => {
+        if (keep) filtered.push(val)
+        return filtered
+      }, [])
+    )
   }
 
   static some (arg, num) {
