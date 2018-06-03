@@ -71,7 +71,7 @@ The API is the same as [Bluebird](http://bluebirdjs.com/docs/getting-started.htm
 - [x] .catchReturn()
 - [x] .catchThrow()
 - [ ] .reflect()
-- [ ] Promise.getNewLibraryCopy()
+- [x] Promise.getNewLibraryCopy()
 - [ ] OperationalError
 - [ ] TimeoutError
 - [ ] CancellationError

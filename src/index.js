@@ -1,4 +1,4 @@
-module.exports = class Bluebirdish extends Promise {
+const makeBluebirdish = () => class Bluebirdish extends Promise {
   static get TypeError () { return TypeError } // alias
 
   spread (fn) {
@@ -237,7 +237,13 @@ module.exports = class Bluebirdish extends Promise {
     const P = this
     return (...args) => P.spawn(() => fn(...args))
   }
+
+  static getNewLibraryCopy () {
+    return makeBluebirdish()
+  }
 }
+
+module.exports = makeBluebirdish()
 
 // Check if a rejection reason `err` matches `predicate`.
 // If `predicate` is an Error class constructor, it checks if `err` is an instance of that class.
