@@ -77,7 +77,11 @@ const makeBluebirdish = () => class Bluebirdish extends Promise {
   }
 
   get (prop) {
-    return this.then((obj) => obj[prop])
+    return this.then((obj) =>
+      typeof prop === 'number' && prop < 0 && typeof obj === 'object' && typeof obj.length === 'number'
+        ? obj[Math.max(0, obj.length + prop)]
+        : obj[prop]
+    )
   }
 
   'return' (value) {

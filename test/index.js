@@ -33,6 +33,7 @@ Test.prototype.run = function run () {
 }
 
 require('./call')
+require('./get')
 require('./getNewLibraryCopy')
 require('./map')
 require('./nodeify')
