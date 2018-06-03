@@ -43,7 +43,7 @@ The API is the same as [Bluebird](http://bluebirdjs.com/docs/getting-started.htm
 - [x] Promise.all()
 - [x] Promise.props()
 - [ ] Promise.any()
-- [ ] Promise.some()
+- [x] Promise.some()
 - [x] Promise.map()
 - [x] Promise.reduce()
 - [ ] Promise.filter()

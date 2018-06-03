@@ -1,6 +1,16 @@
-const makeBluebirdish = () => class Bluebirdish extends Promise {
-  static get TypeError () { return TypeError } // alias
+const makeStatics = () => ({
+  TypeError, // alias
+  RangeError, // alias
+  AggregateError: class AggregateError extends Error {
+    constructor (errors) {
+      super()
+      Object.assign(this, errors)
+      this.length = errors.length
+    }
+  }
+})
 
+const makeBluebirdish = () => Object.assign(class Bluebirdish extends Promise {
   spread (fn) {
     return super.then((args) => {
       if (typeof fn !== 'function') throw new TypeError('bluebirdish: spread: fn must be function')
@@ -54,6 +64,10 @@ const makeBluebirdish = () => class Bluebirdish extends Promise {
 
   reduce (fn, initial) {
     return this.constructor.reduce(this, fn, initial)
+  }
+
+  some (num) {
+    return this.constructor.some(this, num)
   }
 
   delay (time) {
@@ -205,6 +219,32 @@ const makeBluebirdish = () => class Bluebirdish extends Promise {
     })
   }
 
+  static some (arg, num) {
+    const { AggregateError } = Bluebirdish
+    if (num < 0 || typeof num !== 'number' || !isFinite(num)) return this.reject(new TypeError('bluebirdish.some: num must be a positive number'))
+    return this.resolve(arg).then((promises) => new Promise((resolve, reject) => {
+      if (!Array.isArray(promises)) return reject(new TypeError('bluebirdish.some: not an array'))
+      if (promises.length < num) return reject(new RangeError('bluebirdish.some: impossible to resolve, not enough promises'))
+      if (num === 0) return resolve([])
+
+      let completed = []
+      let errored = []
+      function onresolve (val) {
+        if (completed.length >= num) return
+        completed.push(val)
+        if (completed.length >= num) resolve(completed)
+      }
+      function onreject (err) {
+        if (completed.length >= num) return
+        errored.push(err)
+        if (errored.length + completed.length >= promises.length) reject(new AggregateError(errored))
+      }
+      for (let i = 0; i < promises.length; i++) {
+        this.resolve(promises[i]).then(onresolve, onreject)
+      }
+    }))
+  }
+
   static delay (time, value) {
     return new this((resolve) =>
       setTimeout(() => resolve(value), time)
@@ -245,7 +285,7 @@ const makeBluebirdish = () => class Bluebirdish extends Promise {
   static getNewLibraryCopy () {
     return makeBluebirdish()
   }
-}
+}, makeStatics())
 
 module.exports = makeBluebirdish()
 
