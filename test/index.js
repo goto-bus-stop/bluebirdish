@@ -34,6 +34,7 @@ Test.prototype.run = function run () {
 
 require('./any')
 require('./call')
+require('./each')
 require('./filter')
 require('./get')
 require('./getNewLibraryCopy')

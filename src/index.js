@@ -70,6 +70,14 @@ const makeBluebirdish = () => Object.assign(class Bluebirdish extends Promise {
     return this.constructor.reduce(this, fn, initial)
   }
 
+  mapSeries (fn) {
+    return this.constructor.mapSeries(this, fn)
+  }
+
+  each (fn) {
+    return this.constructor.each(this, fn)
+  }
+
   some (num) {
     return this.constructor.some(this, num)
   }
@@ -236,6 +244,22 @@ const makeBluebirdish = () => Object.assign(class Bluebirdish extends Promise {
         return filtered
       }, [])
     )
+  }
+
+  static mapSeries (arg, mapper) {
+    return this.reduce(arg, (list, val, i, len) => {
+      return this.resolve(mapper(val, i, len)).then((res) => {
+        list.push(res)
+        return list
+      })
+    }, [])
+  }
+
+  static each (arg, iterator) {
+    return this.reduce(arg, (list, val, i, len) => {
+      list.push(val)
+      return this.resolve(iterator(val, i, len)).then(() => list)
+    }, [])
   }
 
   static some (arg, num) {
