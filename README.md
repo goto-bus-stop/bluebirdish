@@ -75,7 +75,7 @@ The API is the same as [Bluebird](http://bluebirdjs.com/docs/getting-started.htm
 - [ ] OperationalError
 - [ ] TimeoutError
 - [ ] CancellationError
-- [ ] AggregateError
+- [x] AggregateError
 
 ## License
 
