@@ -12,7 +12,7 @@ tape('Promise.race', function (t) {
   })
 
   t.test('remains forever pending when passed an empty sparse array', function (t) {
-    const p = Promise.race([,,,,, ]) // eslint-disable-line no-sparse-arrays, standard/array-bracket-even-spacing
+    const p = Promise.race([,,,,, ]) // eslint-disable-line no-sparse-arrays, standard/array-bracket-even-spacing, array-bracket-spacing
     let isPending = true
     p.finally(() => { isPending = false })
     return Promise.delay(1).then(function () {

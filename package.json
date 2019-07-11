@@ -9,7 +9,7 @@
   "devDependencies": {
     "buble": "^0.19.8",
     "sinon": "^1.17.7",
-    "standard": "^11.0.0",
+    "standard": "^13.0.0",
     "tap-dot": "^2.0.0",
     "tape": "^4.11.0"
   },

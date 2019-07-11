@@ -128,7 +128,7 @@ if (isNodeJS) {
         t.ok(a === 1)
         t.ok(b === 2)
         t.ok(c === 3)
-      }), {spread: true})
+      }), { spread: true })
       return spy.promise
     })
 
@@ -185,7 +185,7 @@ if (isNodeJS) {
         t.ok(a === 1)
         t.ok(b === 2)
         t.ok(c === 3)
-      }), {spread: true})
+      }), { spread: true })
       return spy.promise
     })
 
@@ -194,7 +194,7 @@ if (isNodeJS) {
       Promise.resolve(3).nodeify(spy(function (err, a) {
         t.ok(err === null)
         t.ok(a === 3)
-      }), {spread: true})
+      }), { spread: true })
       return spy.promise
     })
 
@@ -202,7 +202,7 @@ if (isNodeJS) {
       const err = new Error()
       Promise.resolve([1, 2, 3]).nodeify(function (_, a) {
         throw err
-      }, {spread: true})
+      }, { spread: true })
 
       return awaitGlobalException(function (e) {
         t.strictEqual(err, e)

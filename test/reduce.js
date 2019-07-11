@@ -55,9 +55,9 @@ const ACCUM_CRITERIA = [
 
 const VALUES_CRITERIA = [
   { value: [], total: 0, desc: 'and no values' },
-  { value: [ 1 ], total: 1, desc: 'and a single resolved value' },
-  { value: [ 1, 2, 3 ], total: 6, desc: 'and multiple resolved values' },
-  { value: [ promising(1) ], total: 1, desc: 'and a single Promise' },
+  { value: [1], total: 1, desc: 'and a single resolved value' },
+  { value: [1, 2, 3], total: 6, desc: 'and multiple resolved values' },
+  { value: [promising(1)], total: 1, desc: 'and a single Promise' },
   { value: [
     promising(1),
     promising(2),
@@ -111,7 +111,7 @@ tape('Promise.prototype.reduce', function (t) {
   })
 
   t.test('works with a single value', function (t) {
-    return Promise.resolve([ 1 ]).reduce(function (total, value) {
+    return Promise.resolve([1]).reduce(function (total, value) {
       return total + value + 5
     }).then(function (total) {
       t.strictEqual(total, 1)
@@ -119,7 +119,7 @@ tape('Promise.prototype.reduce', function (t) {
   })
 
   t.test('works when the iterator returns a value', function (t) {
-    return Promise.resolve([ 1, 2, 3 ]).reduce(function (total, value) {
+    return Promise.resolve([1, 2, 3]).reduce(function (total, value) {
       return total + value + 5
     }).then(function (total) {
       t.strictEqual(total, (1 + 2 + 5 + 3 + 5))
@@ -127,7 +127,7 @@ tape('Promise.prototype.reduce', function (t) {
   })
 
   t.test('works when the iterator returns a Promise', function (t) {
-    return Promise.resolve([ 1, 2, 3 ]).reduce(function (total, value) {
+    return Promise.resolve([1, 2, 3]).reduce(function (total, value) {
       return promised(5).then(function (bonus) {
         return total + value + bonus
       })
@@ -137,7 +137,7 @@ tape('Promise.prototype.reduce', function (t) {
   })
 
   t.test('works when the iterator returns a thenable', function (t) {
-    return Promise.resolve([ 1, 2, 3 ]).reduce(function (total, value) {
+    return Promise.resolve([1, 2, 3]).reduce(function (total, value) {
       return thenabled(total + value + 5)
     }).then(function (total) {
       t.strictEqual(total, (1 + 2 + 5 + 3 + 5))
@@ -317,7 +317,7 @@ tape('Promise.reduce', function (t) {
 
   t.test('with a 0th value acting as an accumulator', function (t) {
     t.test('acts this way when an accumulator value is provided yet `undefined`', function (t) {
-      return Promise.reduce([ 1, 2, 3 ], function (total, value) {
+      return Promise.reduce([1, 2, 3], function (total, value) {
         return ((total === void 0) ? 0 : total) + value + 5
       }, undefined).then(function (total) {
         t.strictEqual(total, (1 + 2 + 5 + 3 + 5))
@@ -325,7 +325,7 @@ tape('Promise.reduce', function (t) {
     })
 
     t.test('survives an `undefined` 0th value', function (t) {
-      return Promise.reduce([ undefined, 1, 2, 3 ], function (total, value) {
+      return Promise.reduce([undefined, 1, 2, 3], function (total, value) {
         return ((total === void 0) ? 0 : total) + value + 5
       }).then(function (total) {
         t.strictEqual(total, (1 + 5 + 2 + 5 + 3 + 5))
@@ -338,7 +338,7 @@ tape('Promise.reduce', function (t) {
       t.test(criteria.desc, function (t) {
         VALUES_CRITERIA.forEach(function (criteria) {
           const values = criteria.value
-          const zerothAndValues = [ zeroth ].concat(values)
+          const zerothAndValues = [zeroth].concat(values)
           const valueTotal = criteria.total
 
           t.test(criteria.desc, function (t) {

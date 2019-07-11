@@ -35,6 +35,7 @@ const makeBluebirdish = () => Object.assign(class Bluebirdish extends Promise {
       return fn(err)
     })
   }
+
   get caught () { return this.catch } // alias
 
   finally (cb) {
@@ -44,6 +45,7 @@ const makeBluebirdish = () => Object.assign(class Bluebirdish extends Promise {
       (err) => this.constructor.try(cb).throw(err)
     )
   }
+
   get lastly () { return this.finally } // alias
 
   all () {
@@ -117,6 +119,7 @@ const makeBluebirdish = () => Object.assign(class Bluebirdish extends Promise {
   'return' (value) {
     return this.then(() => value)
   }
+
   get thenReturn () { return this.return }
 
   'throw' (err) {
@@ -151,12 +154,14 @@ const makeBluebirdish = () => Object.assign(class Bluebirdish extends Promise {
 
     return this.then(success, error)
   }
+
   get nodeify () { return this.asCallback } // alias
 
   // Bluebird accepts a Promise for an Array in `all` and `race`.
   static all (arg) {
     return this.resolve(arg).then((arr) => super.all(arr))
   }
+
   static race (arg) {
     return this.resolve(arg).then((arr) => super.race(unsparse(arr)))
   }
@@ -173,6 +178,7 @@ const makeBluebirdish = () => Object.assign(class Bluebirdish extends Promise {
       return this.reject(err)
     }
   }
+
   static get attempt () { return this.try } // alias
 
   static method (fn) {
@@ -185,6 +191,7 @@ const makeBluebirdish = () => Object.assign(class Bluebirdish extends Promise {
   static resolve (value) {
     return super.resolve(value)
   }
+
   static reject (err) {
     return super.reject(err)
   }
@@ -270,8 +277,8 @@ const makeBluebirdish = () => Object.assign(class Bluebirdish extends Promise {
       if (promises.length < num) return reject(new RangeError('bluebirdish.some: impossible to resolve, not enough promises'))
       if (num === 0) return resolve([])
 
-      let completed = []
-      let errored = []
+      const completed = []
+      const errored = []
       function onresolve (val) {
         if (completed.length >= num) return
         completed.push(val)

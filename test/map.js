@@ -155,7 +155,7 @@ tape('Promise.map-test', function (t) {
 })
 
 tape('Promise.map-test with concurrency', { skip: true }, function (t) {
-  const concurrency = {concurrency: 2}
+  const concurrency = { concurrency: 2 }
 
   function mapper (val) {
     return val * 2
@@ -271,7 +271,7 @@ tape('Promise.map-test with concurrency', { skip: true }, function (t) {
       return promiseByIndex(index).then(function () {
         b.push(value)
       })
-    }, {concurrency: 5})
+    }, { concurrency: 5 })
 
     const ret2 = Promise.delay(100).then(function () {
       t.strictEqual(0, b.length)

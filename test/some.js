@@ -98,7 +98,7 @@ tape('Promise.some-test', function (t) {
   })
 
   t.test('should not resolve sparse array input', function (t) {
-    var input = [, 1, , 2, 3 ] // eslint-disable-line no-sparse-arrays, standard/array-bracket-even-spacing
+    var input = [, 1, , 2, 3] // eslint-disable-line no-sparse-arrays, standard/array-bracket-even-spacing
     return Promise.some(input, 2).then(
       function (results) {
         t.deepEqual(results, [void 0, 1])

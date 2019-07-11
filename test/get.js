@@ -43,8 +43,8 @@ tape('identifier getter', function (t) {
   })
 
   t.test('gets same property', function (t) {
-    let o = {o: 1}
-    let o2 = {o: 2}
+    let o = { o: 1 }
+    let o2 = { o: 2 }
     o = Promise.resolve(o).get('o')
     o2 = Promise.resolve(o2).get('o')
     return Promise.join(o, o2, function (one, two) {
@@ -55,7 +55,7 @@ tape('identifier getter', function (t) {
 })
 
 tape('non identifier getters', function (t) {
-  const p = Promise.resolve({'-': 'val'})
+  const p = Promise.resolve({ '-': 'val' })
   t.test('get property', function (t) {
     return p.get('-').then(function (val) {
       t.ok(val === 'val')
