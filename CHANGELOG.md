@@ -4,6 +4,9 @@ All notable changes to this project will be documented in this file.
 
 This project adheres to [Semantic Versioning](http://semver.org/).
 
+## 1.2.0
+* Support Node.js 4+.
+
 ## 1.1.0
 * Add `.each()` and `.mapSeries()`.
 * Add `.filter()`.
