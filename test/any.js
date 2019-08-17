@@ -1,3 +1,4 @@
+'use strict'
 const tape = require('tape')
 const Promise = require('../')
 
@@ -43,7 +44,7 @@ tape('Promise.any-test', function (t) {
     var input = [1, 2, 3]
     return Promise.any(input).then(
       function (result) {
-        t.ok(input.includes(result))
+        t.notEqual(input.indexOf(result), -1)
       }, t.fail
     )
   })
@@ -52,7 +53,7 @@ tape('Promise.any-test', function (t) {
     var input = [Promise.resolve(1), Promise.resolve(2), Promise.resolve(3)]
     return Promise.any(input).then(
       function (result) {
-        t.ok([1, 2, 3].includes(result))
+        t.notEqual([1, 2, 3].indexOf(result), -1)
       }, t.fail
     )
   })
@@ -90,7 +91,7 @@ tape('Promise.any-test', function (t) {
     var input = [1, 2, 3]
     return Promise.any(input).then(
       function (result) {
-        t.ok(input.includes(result))
+        t.notEqual(input.indexOf(result), -1)
       }, t.fail
     )
   })

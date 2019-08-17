@@ -1,3 +1,4 @@
+'use strict'
 /**
  * Monkeypatch support for returning Promises from Tape tests. Mostly just
  * copied some code from Tape.
@@ -30,6 +31,12 @@ Test.prototype.run = function run () {
   // End custom code
 
   this.emit('run')
+}
+
+try {
+  Function('const { a } = b') // eslint-disable-line
+} catch (err) {
+  require('buble/register')
 }
 
 require('./any')

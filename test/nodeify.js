@@ -1,3 +1,4 @@
+'use strict'
 const tape = require('tape')
 const Promise = require('../')
 const sinon = require('sinon')

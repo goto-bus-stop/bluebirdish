@@ -1,8 +1,9 @@
+'use strict'
 const tape = require('tape')
 const Promise = require('../')
 
 function isSubset (sub, superset) {
-  return sub.every((n) => superset.includes(n))
+  return sub.every((n) => superset.indexOf(n) !== -1)
 }
 
 tape('Promise.some', function (t) {

@@ -1,3 +1,4 @@
+'use strict'
 const makeStatics = () => ({
   TypeError, // alias
   RangeError, // alias
