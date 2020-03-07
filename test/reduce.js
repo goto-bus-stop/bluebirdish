@@ -59,45 +59,57 @@ const VALUES_CRITERIA = [
   { value: [1], total: 1, desc: 'and a single resolved value' },
   { value: [1, 2, 3], total: 6, desc: 'and multiple resolved values' },
   { value: [promising(1)], total: 1, desc: 'and a single Promise' },
-  { value: [
-    promising(1),
-    promising(2),
-    promising(3)
-  ],
-  total: 6,
-  desc: 'and multiple Promises' },
-  { value: [
-    promisingThen(1)
-  ],
-  total: 1,
-  desc: 'and a single deferred Promise' },
-  { value: [
-    promisingThen(1),
-    promisingThen(2),
-    promisingThen(3)
-  ],
-  total: 6,
-  desc: 'and multiple deferred Promises' },
-  { value: [
-    thenabling(1)
-  ],
-  total: 1,
-  desc: 'and a single thenable' },
-  { value: [
-    thenabling(1),
-    thenabling(2),
-    thenabling(3)
-  ],
-  total: 6,
-  desc: 'and multiple thenables' },
-  { value: [
-    thenabling(1),
-    promisingThen(2),
-    promising(3),
-    4
-  ],
-  total: 10,
-  desc: 'and a blend of values' }
+  {
+    value: [
+      promising(1),
+      promising(2),
+      promising(3)
+    ],
+    total: 6,
+    desc: 'and multiple Promises'
+  },
+  {
+    value: [
+      promisingThen(1)
+    ],
+    total: 1,
+    desc: 'and a single deferred Promise'
+  },
+  {
+    value: [
+      promisingThen(1),
+      promisingThen(2),
+      promisingThen(3)
+    ],
+    total: 6,
+    desc: 'and multiple deferred Promises'
+  },
+  {
+    value: [
+      thenabling(1)
+    ],
+    total: 1,
+    desc: 'and a single thenable'
+  },
+  {
+    value: [
+      thenabling(1),
+      thenabling(2),
+      thenabling(3)
+    ],
+    total: 6,
+    desc: 'and multiple thenables'
+  },
+  {
+    value: [
+      thenabling(1),
+      promisingThen(2),
+      promising(3),
+      4
+    ],
+    total: 10,
+    desc: 'and a blend of values'
+  }
 ]
 
 const ERROR = new Error('BOOM')
@@ -319,7 +331,7 @@ tape('Promise.reduce', function (t) {
   t.test('with a 0th value acting as an accumulator', function (t) {
     t.test('acts this way when an accumulator value is provided yet `undefined`', function (t) {
       return Promise.reduce([1, 2, 3], function (total, value) {
-        return ((total === void 0) ? 0 : total) + value + 5
+        return ((total === undefined) ? 0 : total) + value + 5
       }, undefined).then(function (total) {
         t.strictEqual(total, (1 + 2 + 5 + 3 + 5))
       })
@@ -327,7 +339,7 @@ tape('Promise.reduce', function (t) {
 
     t.test('survives an `undefined` 0th value', function (t) {
       return Promise.reduce([undefined, 1, 2, 3], function (total, value) {
-        return ((total === void 0) ? 0 : total) + value + 5
+        return ((total === undefined) ? 0 : total) + value + 5
       }).then(function (total) {
         t.strictEqual(total, (1 + 5 + 2 + 5 + 3 + 5))
       })
@@ -561,7 +573,7 @@ tape('Promise.reduce-test', function (t) {
 
   t.test('should reduce to undefined with empty array', function (t) {
     return Promise.reduce([], plus).then(function (r) {
-      t.ok(r === void 0)
+      t.ok(r === undefined)
     })
   })
 
