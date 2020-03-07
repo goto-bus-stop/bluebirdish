@@ -102,7 +102,7 @@ tape('Promise.some-test', function (t) {
     var input = [, 1, , 2, 3] // eslint-disable-line no-sparse-arrays, standard/array-bracket-even-spacing
     return Promise.some(input, 2).then(
       function (results) {
-        t.deepEqual(results, [void 0, 1])
+        t.deepEqual(results, [undefined, 1])
       },
       function () {
         console.error(arguments)
