@@ -7,7 +7,7 @@
     "url": "https://github.com/goto-bus-stop/bluebirdish/issues"
   },
   "devDependencies": {
-    "buble": "^0.19.8",
+    "buble": "^0.20.0",
     "sinon": "^1.17.7",
     "standard": "^14.3.1",
     "tap-dot": "^2.0.0",
