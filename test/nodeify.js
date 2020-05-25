@@ -114,7 +114,7 @@ if (isNodeJS) {
     t.test('always returns promise for now', function (t) {
       return Promise.resolve(3).nodeify().then(function () {
         let a = 0
-        Promise.resolve(3).nodeify(function () {
+        return Promise.resolve(3).nodeify(function () {
           a++
         }).then(function () {
           t.ok(a === 1)
